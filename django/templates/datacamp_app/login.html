@@ -1,0 +1,31 @@
+{% extends 'datacamp_app/base.html' %}
+{% load static %}
+{% block body_block %}
+
+
+<div class="row">
+
+    <div class="col"></div>
+    <div class="col-8 text-center">
+
+        <h1>Please login</h1>
+        <form action="{% url 'datacamp_app:login' %}" method="POST">
+        
+            {% csrf_token %}
+            <label class="form-label" for="username">Username:</label>
+            <input class="form-control" type="text" name='username' placeholder="Username here">
+        
+            <label class='form-label' for="password">Password:</label>
+            <input class="form-control" type="password" name="password">
+            <br>
+            <input class="btn btn-primary" name="submit" type="submit" value="Login">
+        
+        </form>
+    </div>
+    <div class="col"></div>
+   
+
+</div>
+
+
+{% endblock %}

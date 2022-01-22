@@ -1,0 +1,26 @@
+version: '3'
+
+# some text here
+services:
+  db:
+    image: mysql:5.7
+    ports:
+      - '3306:3306'
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=djangodb
+      - MYSQL_ROOT=root
+      - MYSQL_PASSWORD=
+    volumes: 
+      - /Users/pricopserban/Public/bicycle/db_data:/var/lib/mysql
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+#Run sudo docker-compose run web django-admin startproject <project-name> . && docker-compose build && docker-compose up -d
